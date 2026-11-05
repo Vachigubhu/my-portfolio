@@ -16,7 +16,8 @@ export const Contact: React.FC = () => {
   // Clearly identified placeholders
   const placeholderEmail = 'trinity.chigubhu@example.com';
   const githubUrl = 'https://github.com/Vachigubhu';
-  const linkedinPlaceholderUrl = 'https://linkedin.com/in/trinity-chigubhu';
+  const linkedinPlaceholderUrl =
+    "https://www.linkedin.com/in/trinity-chigubhu-94a2bb2ab/";
 
   const validate = () => {
     const errs: Record<string, string> = {};
