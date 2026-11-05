@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Download, Printer, FileText, CheckCircle2, GraduationCap, Award, Shield } from 'lucide-react';
+import { X, Printer, FileText, GraduationCap, Award, Shield } from 'lucide-react';
 import { educationInfo, certifications } from '../data/certifications';
 
 interface CVModalProps {

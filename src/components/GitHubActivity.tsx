@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { GitHubRepo } from '../types';
-import { Github, Star, GitFork, ExternalLink, RefreshCw, AlertCircle, CheckCircle2 } from 'lucide-react';
+import {
+  Github,
+  Star,
+  GitFork,
+  ExternalLink,
+  RefreshCw,
+  AlertCircle,
+} from "lucide-react";
 
 export const GitHubActivity: React.FC = () => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);

@@ -1,22 +1,33 @@
-import React, { useEffect } from 'react';
-import { Project } from '../types';
-import { X, Github, ExternalLink, Cpu, CheckCircle2, AlertCircle, Layers, ArrowRight } from 'lucide-react';
+import React, { useEffect } from "react";
+import { Project } from "../types";
+import {
+  X,
+  Github,
+  ExternalLink,
+  Cpu,
+  CheckCircle2,
+  AlertCircle,
+  Layers,
+} from "lucide-react";
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
 }
 
-export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+export const ProjectModal: React.FC<ProjectModalProps> = ({
+  project,
+  onClose,
+}) => {
   // Prevent background scroll when modal is open
   useEffect(() => {
     if (project) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [project]);
 
@@ -24,25 +35,25 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'Functional MVP':
-        return 'bg-emerald-950/80 text-emerald-400 border-emerald-800/80';
-      case 'Active Prototype':
-        return 'bg-cyan-950/80 text-cyan-400 border-cyan-800/80';
-      case 'In Development':
-        return 'bg-amber-950/80 text-amber-400 border-amber-800/80';
-      case 'Completed':
-        return 'bg-blue-950/80 text-blue-400 border-blue-800/80';
-      case 'Upcoming Concept':
-        return 'bg-purple-950/80 text-purple-400 border-purple-800/80';
+      case "Functional MVP":
+        return "bg-emerald-950/80 text-emerald-400 border-emerald-800/80";
+      case "Active Prototype":
+        return "bg-cyan-950/80 text-cyan-400 border-cyan-800/80";
+      case "In Development":
+        return "bg-amber-950/80 text-amber-400 border-amber-800/80";
+      case "Completed":
+        return "bg-blue-950/80 text-blue-400 border-blue-800/80";
+      case "Upcoming Concept":
+        return "bg-purple-950/80 text-purple-400 border-purple-800/80";
       default:
-        return 'bg-slate-900 text-slate-300 border-slate-700';
+        return "bg-slate-900 text-slate-300 border-slate-700";
     }
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
@@ -50,11 +61,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
       {/* Modal Dialog */}
       <div className="relative bg-[#0a0f1d] border border-slate-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl z-10 text-slate-200">
-        
         {/* Modal Header */}
         <div className="sticky top-0 bg-[#0a0f1d]/95 backdrop-blur-md px-6 py-4 border-b border-slate-800 flex items-center justify-between z-20">
           <div className="flex items-center space-x-3">
-            <span className={`text-[11px] font-mono px-2.5 py-1 rounded-full border ${getStatusColor(project.status)}`}>
+            <span
+              className={`text-[11px] font-mono px-2.5 py-1 rounded-full border ${getStatusColor(project.status)}`}
+            >
               {project.status}
             </span>
             <span className="text-xs font-mono text-slate-400 hidden sm:inline">
@@ -73,7 +85,6 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
         {/* Modal Content */}
         <div className="p-6 sm:p-8 space-y-8">
-          
           {/* Title and summary */}
           <div className="space-y-3">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -83,7 +94,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               {project.fullDescription}
             </p>
             <div className="text-xs font-mono text-cyan-400 bg-cyan-950/40 p-2.5 rounded border border-cyan-800/40">
-              <span className="font-semibold text-white">System Architecture: </span>
+              <span className="font-semibold text-white">
+                System Architecture:{" "}
+              </span>
               {project.architectureHighlights}
             </div>
           </div>
@@ -118,7 +131,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
-                <span 
+                <span
                   key={tech}
                   className="px-2.5 py-1 rounded bg-slate-900 text-cyan-300 text-xs font-mono border border-slate-700/80"
                 >
@@ -136,8 +149,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </h3>
             <ul className="space-y-2">
               {project.engineeringDecisions.map((decision, index) => (
-                <li key={index} className="flex items-start space-x-2.5 text-xs text-slate-300 leading-relaxed">
-                  <span className="text-cyan-400 font-mono font-bold shrink-0 mt-0.5">[{index + 1}]</span>
+                <li
+                  key={index}
+                  className="flex items-start space-x-2.5 text-xs text-slate-300 leading-relaxed"
+                >
+                  <span className="text-cyan-400 font-mono font-bold shrink-0 mt-0.5">
+                    [{index + 1}]
+                  </span>
                   <span>{decision}</span>
                 </li>
               ))}
@@ -152,7 +170,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {project.keyFeatures.map((feat, index) => (
-                <div key={index} className="bg-slate-900/50 p-2.5 rounded border border-slate-800 text-xs text-slate-300 flex items-start gap-2">
+                <div
+                  key={index}
+                  className="bg-slate-900/50 p-2.5 rounded border border-slate-800 text-xs text-slate-300 flex items-start gap-2"
+                >
                   <span className="text-emerald-400 font-mono">✓</span>
                   <span>{feat}</span>
                 </div>
@@ -169,7 +190,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {project.plannedFeatures.map((feat, index) => (
-                  <div key={index} className="bg-slate-900/30 p-2.5 rounded border border-slate-800/60 text-xs text-slate-400 flex items-start gap-2">
+                  <div
+                    key={index}
+                    className="bg-slate-900/30 p-2.5 rounded border border-slate-800/60 text-xs text-slate-400 flex items-start gap-2"
+                  >
                     <span className="text-amber-400 font-mono">⏳</span>
                     <span>{feat}</span>
                   </div>
@@ -213,9 +237,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               Close Window
             </button>
           </div>
-
         </div>
-
       </div>
     </div>
   );
